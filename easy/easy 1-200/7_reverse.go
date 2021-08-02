@@ -1,13 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func Reverse(x int) int {
 	result := 0
-	for ; x/10 > 0; x = x / 10 {
-		result = x%10 + result*10
+	for x != 0 {
+		if result < math.MinInt32/10 || result > math.MaxInt32/10 {
+			return 0
+		}
+		result = result*10 + x%10
+		x = x / 10
 	}
-	result = x%10 + result*10
 	return result
 }
 
